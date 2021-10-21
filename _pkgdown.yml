@@ -1,0 +1,12 @@
+reference:
+- title: "Data importation functions"
+  desc: "Modified versions of popular R data importation functions. All import data as a tibble instead of a data.frame."
+- contents:
+  - tbl_dbGetQuery
+  - tbl_dbReadTable
+- title: "Date functions"
+  desc: "Functions for dealing with dates."
+- contents:
+  - month_2
+  - month_string
+

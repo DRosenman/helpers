@@ -9,3 +9,16 @@ Description: More about what it does (maybe more than one line)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.1.1
+Imports: 
+    data.table,
+    DBI,
+    dplyr,
+    glue,
+    lubridate,
+    magrittr,
+    stringr,
+    tibble,
+    tidyr
+Depends: 
+    R (>= 2.10)
