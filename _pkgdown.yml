@@ -4,9 +4,13 @@ reference:
 - contents:
   - tbl_dbGetQuery
   - tbl_dbReadTable
+  - tbl_fread
+- title: "Data transformation functions"
+  contents:
+  - monthly_pivot
 - title: "Date functions"
   desc: "Functions for dealing with dates."
 - contents:
-  - month_2
-  - month_string
+  - month_char
+  - month_label
 

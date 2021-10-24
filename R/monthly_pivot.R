@@ -1,4 +1,4 @@
-#' Title
+#' Create monthly pivot summary
 #'
 #' @param data data.frame
 #' @param date date column name
@@ -13,13 +13,13 @@
 #' @export
 #'
 #' @examples
-#' monthly_pivot(hflights, date = 'Date', group_by = c("Origin", "Dest"), values_from = "DepDelay", total = TRUE)
+#' monthly_pivot(dplyr::filter(hflights, Date >= '2011-10-01'), date = 'Date', group_by = c("Origin", "Dest"), values_from = "DepDelay", total = TRUE)
 monthly_pivot <- function(data, date, group_by, values_from, calc = sum, na.rm = TRUE, total = FALSE, total_name = NULL) {
   # if(!is.null(formals(args(calc))$na.rm) & (formals(args(calc))$na.rm %in% c(TRUE,FALSE))) {
   #   data <- data %>%
   #     dplyr::select(Date = date, !!!rlang::syms(group_by), !!rlang::sym(values_from)) %>%
   #     dplyr::mutate(Date = as.Date(Date), Year = lubridate::year(Date),
-  #                   Month = glue::glue("{Year}-{month_2(lubridate::month(Date))}")) %>%
+  #                   Month = glue::glue("{Year}-{month_char(lubridate::month(Date))}")) %>%
   #     dplyr::select(Month, !!!rlang::syms(group_by), !!rlang::sym(values_from)) %>%
   #     dplyr::group_by(Month, !!!rlang::syms(group_by)) %>%
   #     dplyr::summarise(Values = do.call(calc, .data[[values_from]], na.rm = na.rm)) %>%
@@ -33,7 +33,7 @@ monthly_pivot <- function(data, date, group_by, values_from, calc = sum, na.rm =
     data_pivot <- data %>%
       dplyr::select(Date = date, !!!rlang::syms(group_by), !!rlang::sym(values_from)) %>%
       dplyr::mutate(Date = as.Date(Date), Year = lubridate::year(Date),
-                    Month = glue::glue("{Year}-{month_2(lubridate::month(Date))}")) %>%
+                    Month = glue::glue("{Year}-{month_char(lubridate::month(Date))}")) %>%
       dplyr::select(Month, !!!rlang::syms(group_by), !!rlang::sym(values_from)) %>%
       dplyr::group_by(Month, !!!rlang::syms(group_by)) %>%
       dplyr::summarise(Values = calc(.data[[values_from]], na.rm = na.rm)) %>%
@@ -66,6 +66,4 @@ monthly_pivot <- function(data, date, group_by, values_from, calc = sum, na.rm =
     # dplyr::summarise(Value = calc({{values_from}}, na.rm = na.rm))
 }
 
-test2 <- function(cols) {
-  hflights %>% dplyr::group_by(Date, !!!cols)
-}
+

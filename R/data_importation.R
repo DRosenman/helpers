@@ -47,7 +47,7 @@ tbl_dbGetQuery <- function(conn, statement, all_upper = F) {
 #' @return
 #' @export
 tbl_fread <- function(...) {
- data.table::fread(...)
+ data.table::fread(...) %>% tibble::as_tibble()
 }
 
 

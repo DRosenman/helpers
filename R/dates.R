@@ -7,8 +7,8 @@
 #' @export
 #'
 #' @examples
-#' month_2(1:12)
-month_2 <- function(month) {
+#' month_char(1:12)
+month_char <- function(month) {
   stopifnot(is.integer(month) | is.double(month))
   if(!is.integer(month)) {
     month <- as.integer(month)
@@ -23,7 +23,7 @@ month_2 <- function(month) {
 
 #' Convert year and month to month label
 #'
-#' Converts year and month to 'year-two digit month number-month abbreviation or name'
+#' Converts year and month to 'year-two digit month number-month abbreviation or name
 #' @param year integer vector
 #' @param month integer vector contain values from 1 to 12
 #' @param abb if TRUE month abbreviation is used instead of full name (default FALSE)
@@ -33,10 +33,10 @@ month_2 <- function(month) {
 #' @export
 #'
 #' @examples
-#' month_string(2021, 6)
-#' month_string(2021, 6, abb = TRUE)
-#' month_string(2021, 6, upper_case = TRUE)
-month_string <- function(year, month, abb = FALSE, upper_case = FALSE) {
+#' month_label(2021, 6)
+#' month_label(2021, 6, abb = TRUE)
+#' month_label(2021, 6, upper_case = TRUE)
+month_label <- function(year, month, abb = FALSE, upper_case = FALSE) {
   stopifnot(is.integer(month) | is.double(month))
   if(!is.integer(month)) {
     month <- as.integer(month)
@@ -59,7 +59,7 @@ month_string <- function(year, month, abb = FALSE, upper_case = FALSE) {
     month_name <- month.name[month]
   }
 
-  month_num <- month_2(month)
+  month_num <- month_char(month)
   x <- paste(year, month_num, month_name, sep = "_")
   if(upper_case) {
     x <- toupper(x)
